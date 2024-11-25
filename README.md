@@ -1,69 +1,46 @@
 
-# Zichun Mini Project 1
+# Python Application in Docker
 
-This is a Python project template with a functioning `Makefile`, a `.devcontainer`, and basic setup for CI/CD using GitHub Actions. The project also includes unit tests and linting with `pylint`.
+## Overview
+This project demonstrates how to containerize a simple Python application using Docker and automate the build and deployment with GitHub Actions.
 
-## Links
+## Features
+- Flask-based API to return the current time.
+- Dockerized application with automated builds.
+- CI/CD pipeline to push images to Docker Hub.
 
-- **Version control Source Code Management Repository**: [github repo](https://github.com/nogibjj/zichun-miniproject-1).
-- **Link to successful CI/CD run**: [Link to GitHub Actions](https://github.com/nogibjj/zichun-miniproject-1/actions).
-
-
-## Project Setup
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/your-username/zichun-miniproject-1.git
-cd zichun-miniproject-1
-```
-
-### 2. Install Dependencies
-
-You can install the required Python dependencies by running:
-
-```bash
-make setup
-```
-
-This will install all the packages listed in `requirements.txt`.
-
-### 3. Running the Linter
-
-To ensure your code follows proper Python style guidelines, run:
-
-```bash
-make lint
-```
-
-This will run `pylint` on the `src/main.py` file.
-
-### 4. Running Tests
-
-To run the unit tests using `pytest`, use the following command:
-
-```bash
-make test
-```
-
-The `Makefile` is set up to run the tests in the `tests/` directory.
-
-## Usage Instructions
-
-The project contains a simple `add` function and a main script. You can run the main script as follows:
-
-```bash
-python src/main.py
-```
-
-The `main.py` file will print "Hello, world!" when executed.
+## How to Run
+1. Build the Docker image locally:
+   ```bash
+   docker build -t my-python-app .
+   ```
+2. Run the Docker container:
+   ```bash
+   docker run -p 5000:5000 my-python-app
+   ```
+3. Access the app at `http://localhost:5000`.
 
 ## CI/CD Pipeline
+The GitHub Actions workflow automatically builds and pushes the Docker image to Docker Hub on every push to the `main` branch.
 
-This project uses GitHub Actions for Continuous Integration (CI). The workflow is defined in the `.github/workflows/ci.yml` file and runs automatically on every push to the main branch. The CI performs the following actions:
-- Linting with `pylint`
-- Running unit tests with `pytest`
+## Repository Structure
+```
+.
+├── src/
+│   ├── main.py           # Python application logic
+├── requirements.txt      # Dependencies
+├── Dockerfile            # Docker configuration
+├── .github/
+│   ├── workflows/
+│       ├── ci.yml        # GitHub Actions configuration
+├── README.md             # Project documentation
+```
 
-## Development Environment with Devcontainer
+## CI/CD Setup
+1. Add the following secrets to your GitHub repository:
+   - `DOCKER_USERNAME`: Your Docker Hub username.
+   - `DOCKER_PASSWORD`: Your Docker Hub password.
+2. Modify the `ci.yml` file to include your Docker Hub repository.
 
-A development container is included to ensure consistency in development environments. The `.devcontainer` folder contains a `Dockerfile` and `devcontainer.json` file for setting up the containerized development environment in tools like Visual Studio Code.
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
