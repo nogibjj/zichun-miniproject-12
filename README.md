@@ -35,12 +35,3 @@ The GitHub Actions workflow automatically builds and pushes the Docker image to 
 │       ├── ci.yml        # GitHub Actions configuration
 ├── README.md             # Project documentation
 ```
-
-## CI/CD Setup
-1. Add the following secrets to your GitHub repository:
-   - `DOCKER_USERNAME`: Your Docker Hub username.
-   - `DOCKER_PASSWORD`: Your Docker Hub password.
-2. Modify the `ci.yml` file to include your Docker Hub repository.
-
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
